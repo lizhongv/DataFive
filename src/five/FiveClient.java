@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import game.DialogPlayback;
 import game.Game;
 import game.Manual;
@@ -23,6 +25,7 @@ public class FiveClient extends Frame {// 创建客户端窗口
 	String opname; // 对手的用户名
 	public boolean isConnected = false; // 当前是否连接到服务器
 	Communication c = null;
+	int playingTime;
 
 	public static void main(String[] args) {
 		FiveClient fc = new FiveClient();
@@ -46,8 +49,9 @@ public class FiveClient extends Frame {// 创建客户端窗口
 		this.add(control, BorderLayout.SOUTH);
 		this.add(board, BorderLayout.CENTER);
 
-		this.setLocation(300, 100);
-		pack();
+		// this.setLocation(300, 100);
+		this.pack();
+		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
 
@@ -101,7 +105,9 @@ public class FiveClient extends Frame {// 创建客户端窗口
 	}
 
 	public void join(String opponentName) {
-		c.join(opponentName);
+		String strTime = JOptionPane.showInputDialog("请输入下棋总用时(秒)：");
+		playingTime = Integer.parseInt(strTime);
+		c.join(opponentName, strTime);
 	}
 
 	public Communication getC() {

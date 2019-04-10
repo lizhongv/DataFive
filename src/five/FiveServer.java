@@ -99,10 +99,11 @@ public class FiveServer extends Frame implements ActionListener {// 服务器端
 					// 接收客户端发来的消息
 					if (words[0].equals(Command.JOIN)) {
 						String opponentName = words[1];
+						String playingTime = words[2];
 						for (int i = 0; i < clients.size(); i++) {
 							if (clients.get(i).name.equals(opponentName)) {
 								dos = new DataOutputStream(clients.get(i).s.getOutputStream());
-								dos.writeUTF(Command.JOIN + ":" + c.name);
+								dos.writeUTF(Command.JOIN + ":" + c.name + ":" + playingTime);
 								break;
 							}
 						}
@@ -285,6 +286,21 @@ public class FiveServer extends Frame implements ActionListener {// 服务器端
 				if (words[0].equals(Command.LOGIN)) {
 					String userName = words[1];
 					String passWord = words[2];
+
+					boolean hasLogin = false;
+					for (int i = 0; i < clients.size(); i++) {
+						Client c = clients.get(i);
+						if (c.name.equalsIgnoreCase(userName)) {
+							dos.writeUTF(Command.LOGIN + ":hasLogin");
+							hasLogin = true;
+							break;
+						}
+					}
+					if (hasLogin) {
+						s.close();
+						continue;
+					}
+
 					UserDao ud = new UserDao();
 					if (ud.getUser(userName, passWord) != null) {
 						dos.writeUTF(Command.LOGIN + ":true");

@@ -49,7 +49,8 @@ public class DialogLogin extends JDialog implements ActionListener {
 					JOptionPane.showMessageDialog(this, "登录成功！");
 					this.dispose();
 				} else {
-					JOptionPane.showMessageDialog(this, "用户名或密码不符！");
+					this.dispose();
+					// JOptionPane.showMessageDialog(this, "用户名或密码不符！");
 				}
 			}
 		} else if ("注册".equals(str)) {
@@ -82,8 +83,9 @@ public class DialogLogin extends JDialog implements ActionListener {
 		jbCancel.addActionListener(this);
 		this.add(jpSouth, BorderLayout.SOUTH);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setLocation(450, 250);
+		// this.setLocation(450, 250);
 		this.pack();
+		this.setLocationRelativeTo(fc);
 		this.setVisible(true);
 	}
 }

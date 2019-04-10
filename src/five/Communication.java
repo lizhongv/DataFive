@@ -53,8 +53,10 @@ public class Communication {
 						fc.message.messageArea.append(words[1] + ": " + words[2] + "\n");
 					} else if (words[0].equals(Command.JOIN)) {//
 						String name = words[1];
+						String strTime = words[2];
 						TimeDialog d = new TimeDialog();
-						int select = d.showDialog(fc, name + "邀请您下棋，是否接受 ？", 100);
+						fc.playingTime = Integer.parseInt(strTime);
+						int select = d.showDialog(fc, name + " 邀请您下棋(用时" + strTime + "秒)是否接受 ？", 100);
 						if (select == 0) {
 							dos.writeUTF(Command.AGREE + ":" + name);
 						} else {
@@ -94,7 +96,7 @@ public class Communication {
 						fc.control.exitGameButton.setEnabled(false);
 						fc.message.messageArea.append("My color is " + color + "\n");
 
-						tt = new TimerThread(fc, 120);
+						tt = new TimerThread(fc, fc.playingTime);
 						tt.start();
 					} else if (words[0].equals(Command.GO)) {
 						int col = Integer.parseInt(words[1]);
@@ -160,8 +162,13 @@ public class Communication {
 				fc.control.chessManualButton.setEnabled(true);
 				fc.control.exitGameButton.setEnabled(true);
 				return true;
+			} else if (words[0].equals(Command.LOGIN) && (words[1].equals("hasLogin"))) {
+				s.close();
+				JOptionPane.showMessageDialog(fc, "该用户已经登录!");
+				return false;
 			} else {
 				s.close();
+				JOptionPane.showMessageDialog(fc, "用户名或密码不符!");
 				return false;
 			}
 		} catch (UnknownHostException e) {
@@ -179,9 +186,9 @@ public class Communication {
 		return false;
 	}
 
-	public void join(String opponentName) {
+	public void join(String opponentName, String time) {
 		try {
-			dos.writeUTF(Command.JOIN + ":" + opponentName);
+			dos.writeUTF(Command.JOIN + ":" + opponentName + ":" + time);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
