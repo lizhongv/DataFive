@@ -21,6 +21,6 @@ public class Command {// 用于客户端和服务器之间进行信息传递
 	public static final String GAME = "game";
 	public static final String MANUAL = "manual";
 
-	// public static final String TALK = "talk";
+	public static final String TALK = "talk";
 
 }

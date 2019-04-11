@@ -13,8 +13,7 @@ public class PanelControl extends Panel {
 	public Label IPlabel = new Label("服务器IP：", Label.LEFT);
 	public TextField inputIP = new TextField("127.0.0.1", 12);
 	public Button loginButton = new Button("登录");
-
-	// public Button talkButton=new Button("聊天");
+	public Button talkButton = new Button("聊天");
 
 	public Button joinGameButton = new Button("加入游戏");
 	public Button cancelGameButton = new Button("放弃游戏");
@@ -32,5 +31,6 @@ public class PanelControl extends Panel {
 		add(cancelGameButton);
 		add(chessManualButton);
 		add(exitGameButton);
+		add(talkButton);
 	}
 }

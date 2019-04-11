@@ -30,7 +30,7 @@ public class DialogLogin extends JDialog implements ActionListener {
 	FiveClient fc;
 
 	public DialogLogin(Window parent, String ip) {
-		super(parent, "用户登录", Dialog.ModalityType.APPLICATION_MODAL);
+		super(parent, "用户登录", Dialog.ModalityType.APPLICATION_MODAL);// 阻止所有顶级窗口
 		fc = (FiveClient) parent;
 		this.ip = ip;
 		createGUI();
@@ -61,7 +61,7 @@ public class DialogLogin extends JDialog implements ActionListener {
 	}
 
 	public void createGUI() {
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());// 边界布局：东、西、南、北、中
 		JPanel jpWest = new JPanel();
 		JPanel jpCenter = new JPanel();
 		JPanel jpSouth = new JPanel();
