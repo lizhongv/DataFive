@@ -21,8 +21,8 @@ public class FiveClient extends Frame {// 创建客户端窗口
 	PanelMessage message; // 信息面板
 	PanelControl control; // 控制面板
 
-	String myname; // 自己的用户名
-	String opname; // 对手的用户名
+	String myname;
+	String opname;
 	public boolean isConnected = false; // 当前是否连接到服务器
 	Communication c = null;// 客户端接收和发送的消息
 	int playingTime;// 游戏时间

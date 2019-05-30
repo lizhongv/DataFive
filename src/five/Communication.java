@@ -51,7 +51,7 @@ public class Communication {
 					} else if (words[0].equals(Command.ADD)) {// 用户列表、信息面板
 						fc.userList.userList.add(words[1] + ": " + words[2]);
 						fc.message.messageArea.append(words[1] + ": " + words[2] + "\n");
-					} else if (words[0].equals(Command.JOIN)) {//
+					} else if (words[0].equals(Command.JOIN)) {
 						String name = words[1];
 						String strTime = words[2];
 						TimeDialog d = new TimeDialog();

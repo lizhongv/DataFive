@@ -28,9 +28,8 @@ import user.User;
 import user.UserDao;
 
 public class FiveServer extends Frame implements ActionListener {// 服务器端界面
-	// 三个区域：标签、文本区域、关闭按钮
-	Label lStatus = new Label("当前连接数:0", Label.LEFT);
-	TextArea taMessage = new TextArea("", 22, 50, TextArea.SCROLLBARS_VERTICAL_ONLY);
+	Label lStatus = new Label("当前连接数:0", Label.LEFT);// 客户端连接数
+	TextArea taMessage = new TextArea("", 22, 50, TextArea.SCROLLBARS_VERTICAL_ONLY);// 显示客户端行为
 	Button btServerClose = new Button("关闭服务器");
 
 	ServerSocket ss = null;// 服务器套接字
@@ -62,14 +61,13 @@ public class FiveServer extends Frame implements ActionListener {// 服务器端
 	}
 
 	class Client { // 内部类：记录连接到服务器的客户端信息
-		// 七种属性：用户名、套接字、状态、对手、该客户端执棋的颜色、下棋的手数、每一步棋子的坐标
 		String name;
 		Socket s;
 		String state; // 1、ready 2、playing
 		Client opponent;
-		String chessColor;
-		int step;
-		int[][] coordinates;
+		String chessColor;// 该客户端执棋的颜色
+		int step;// 下棋的手数
+		int[][] coordinates;// 每一步棋子的坐标
 
 		public Client(String name, Socket s) {
 			this.name = name;
@@ -96,8 +94,8 @@ public class FiveServer extends Frame implements ActionListener {// 服务器端
 					dis = new DataInputStream(c.s.getInputStream());
 					String msg = dis.readUTF();
 					String[] words = msg.split(":");
-					// 接收客户端发来的消息
-					if (words[0].equals(Command.JOIN)) {
+
+					if (words[0].equals(Command.JOIN)) {// join：+opponentName：+playingTime
 						String opponentName = words[1];
 						String playingTime = words[2];
 						for (int i = 0; i < clients.size(); i++) {
@@ -320,7 +318,7 @@ public class FiveServer extends Frame implements ActionListener {// 服务器端
 						s.close();
 					}
 				}
-				if (words[0].equals(Command.REGISTER)) {
+				if (words[0].equals(Command.REGISTER)) {// register：+ 用户
 					ObjectInputStream ois = null;
 					try {
 						ois = new ObjectInputStream(is);
