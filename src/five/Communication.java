@@ -136,6 +136,8 @@ public class Communication {
 						} catch (ClassNotFoundException e) {
 							e.printStackTrace();
 						}
+					} else if (words[0].equals(Command.TALK)) {
+						fc.message.messageArea.append(words[1] + ":" + words[3] + "\n");
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -161,6 +163,7 @@ public class Communication {
 				fc.control.cancelGameButton.setEnabled(false);
 				fc.control.chessManualButton.setEnabled(true);
 				fc.control.exitGameButton.setEnabled(true);
+				fc.control.talkButton.setEnabled(true);
 				return true;
 			} else if (words[0].equals(Command.LOGIN) && (words[1].equals("hasLogin"))) {
 				s.close();
@@ -189,6 +192,14 @@ public class Communication {
 	public void join(String opponentName, String time) {
 		try {
 			dos.writeUTF(Command.JOIN + ":" + opponentName + ":" + time);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void talk(String strMessage) {
+		try {
+			dos.writeUTF(Command.TALK + ":" + strMessage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -245,4 +256,5 @@ public class Communication {
 			e.printStackTrace();
 		}
 	}
+
 }

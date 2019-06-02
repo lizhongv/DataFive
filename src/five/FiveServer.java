@@ -204,6 +204,12 @@ public class FiveServer extends Frame implements ActionListener {// 服务器端
 						clientNum--;
 						lStatus.setText("连接数:" + clientNum);
 						return;
+					} else if (words[0].equals(Command.TALK)) {
+						for (int i = 0; i < clients.size(); i++) {
+							dos = new DataOutputStream(clients.get(i).s.getOutputStream());
+							dos.writeUTF(Command.TALK + ":" + c.name + ":" + msg);
+						}
+						taMessage.append(c.name + " talk\n");
 					} else if (words[0].equals(Command.GAME)) {
 						ArrayList<Game> games;
 						GameDao gd = new GameDao();
