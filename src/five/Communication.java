@@ -1,4 +1,4 @@
-// 创建客户端接收和发送的信息类
+// 创建客户端接收和发送的信息类haha
 package five;
 
 import java.io.DataInputStream;
