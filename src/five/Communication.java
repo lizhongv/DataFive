@@ -197,7 +197,8 @@ public class Communication {
 		}
 	}
 
-	public void talk(String strMessage) {
+	public void talk() {
+		String strMessage = JOptionPane.showInputDialog("请输入您要发送的消息：");
 		try {
 			dos.writeUTF(Command.TALK + ":" + strMessage);
 		} catch (IOException e) {

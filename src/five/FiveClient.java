@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import game.DialogGames;
 import game.DialogPlayback;
 import game.Game;
 import game.Manual;
@@ -103,7 +104,7 @@ public class FiveClient extends Frame {// 创建客户端窗口
 			} else if (e.getSource() == control.chessManualButton) {// 棋谱
 				c.getGames(myname);
 			} else if (e.getSource() == control.talkButton) {// 聊天
-				talk();
+				c.talk();
 			}
 		}
 	}
@@ -112,11 +113,6 @@ public class FiveClient extends Frame {// 创建客户端窗口
 		String strTime = JOptionPane.showInputDialog("请输入下棋总用时(秒)：");
 		playingTime = Integer.parseInt(strTime);
 		c.join(opponentName, strTime);
-	}
-
-	public void talk() {
-		String strMessage = JOptionPane.showInputDialog("请输入您要发送的消息：");
-		c.talk(strMessage);
 	}
 
 	public Communication getC() {
