@@ -47,10 +47,10 @@ public class CreateDatabase {
 					+ "regDate date not null)";
 			stmt.executeUpdate(sql);
 			sql = "insert into user(name,password,email,level,regDate)"
-					+ "values('test1','test1','test1@five.com',1,'2016-01-22')";
+					+ "values('test1','test1','test1@five.com',1,'2019-01-22')";
 			stmt.executeUpdate(sql);
 			sql = "insert into user(name,password,email,level,regDate)"
-					+ "values('test2','test2','test2@five.com',1,'2016-01-22')";
+					+ "values('test2','test2','test2@five.com',1,'2019-01-22')";
 			stmt.executeUpdate(sql);
 
 			sql = "create table game(id int auto_increment not null primary key," + "gameDate date not null, "
@@ -58,10 +58,10 @@ public class CreateDatabase {
 					+ "winner VARCHAR(10) not null," + "manualFileName VARCHAR(100) not null)";
 			stmt.executeUpdate(sql);
 			sql = "insert into game(gameDate,playerBlack,playerWhite,winner,manualFileName)"
-					+ "values('2016-01-22','test1','test2','test2','game1201601221205.fiv')";
+					+ "values('2019-01-22','test1','test2','test2','game1201601221205.fiv')";
 			stmt.executeUpdate(sql);
 			sql = "insert into game(gameDate,playerBlack,playerWhite,winner,manualFileName)"
-					+ "values('2016-01-22','test1','test2','test1','game1201601221848.fiv')";
+					+ "values('2019-01-22','test1','test2','test1','game1201601221848.fiv')";
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
